@@ -1,12 +1,18 @@
 import { Tabs } from "expo-router";
 import { Trees, Flower2, Users, Scissors } from "lucide-react-native";
 import React from "react";
+import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 import { Colors } from "../constants";
 import { UserProvider } from "../contexts";
 
 export default function TabLayout() {
+  const insets = useSafeAreaInsets();
+  
   return (
     <UserProvider>
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       <Tabs
         screenOptions={{
           headerShown: true,
@@ -18,12 +24,27 @@ export default function TabLayout() {
             shadowOffset: { width: 0, height: -2 },
             shadowOpacity: 0.05,
             shadowRadius: 8,
+            paddingTop: 6,
+            paddingBottom: Platform.OS === 'ios' ? insets.bottom + 6 : 6,
+            height: Platform.OS === 'ios' ? 65 + insets.bottom : 65,
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            marginTop: 4,
+          },
+          tabBarIconStyle: {
+            marginTop: 2,
           },
           headerStyle: {
-            backgroundColor: Colors.cardBackground,
+            backgroundColor: 'transparent',
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+            height: Platform.OS === 'ios' ? 60 + insets.top : 60,
           },
           headerTitleStyle: {
             fontWeight: "bold" as const,
@@ -69,6 +90,30 @@ export default function TabLayout() {
             tabBarActiveTintColor: Colors.garden.primary,
             tabBarInactiveTintColor: Colors.text.secondary,
             tabBarIcon: ({ color }) => <Users size={24} color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="index"
+          options={{
+            href: null, // Hide from tab bar
+          }}
+        />
+        <Tabs.Screen
+          name="search-users"
+          options={{
+            href: null, // Hide from tab bar
+          }}
+        />
+        <Tabs.Screen
+          name="gratitude-archive"
+          options={{
+            href: null, // Hide from tab bar
+          }}
+        />
+        <Tabs.Screen
+          name="+not-found"
+          options={{
+            href: null, // Hide from tab bar
           }}
         />
       </Tabs>

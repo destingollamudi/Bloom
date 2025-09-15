@@ -176,7 +176,16 @@ export default function GardenScreen() {
   };
 
   const navigateToMyAccount = () => {
-    Alert.alert('My Account', 'Account management coming soon!\n\nFeatures:\n• Profile photo\n• Name & username\n• Email settings\n• Join date\n• Edit profile\n• Log out');
+    Alert.alert(
+      'My Account',
+      'Choose an option:',
+      [
+        { text: 'Discover Friends', onPress: () => router.push('/search-users') },
+        { text: 'Gratitude Archive', onPress: () => router.push('/gratitude-archive') },
+        { text: 'Profile Settings', onPress: () => Alert.alert('Profile Settings', 'Profile management coming soon!') },
+        { text: 'Cancel', style: 'cancel' },
+      ]
+    );
   };
 
   const navigateToGratitudeArchive = () => {
@@ -184,7 +193,13 @@ export default function GardenScreen() {
   };
 
   return (
-    <ScrollView style={[styles.container, { paddingTop: insets.top }]} showsVerticalScrollIndicator={false}>
+    <ScrollView 
+      style={[styles.container, { 
+        paddingTop: insets.top,
+        paddingBottom: Platform.OS === 'ios' ? insets.bottom + 80 : 80
+      }]} 
+      showsVerticalScrollIndicator={false}
+    >
       {/* Greeting Banner */}
       <View style={styles.greetingBanner}>
         <View style={styles.greetingContent}>

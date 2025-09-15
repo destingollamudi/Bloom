@@ -1,18 +1,51 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es6"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/screens/*": ["./src/screens/*"],
-      "@/types/*": ["./src/types/*"],
-      "@/constants/*": ["./src/constants/*"],
-      "@/contexts/*": ["./src/contexts/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/services/*": ["./src/services/*"],
-      "@/hooks/*": ["./src/hooks/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/screens/*": [
+        "./src/screens/*"
+      ],
+      "@/types/*": [
+        "./src/types/*"
+      ],
+      "@/constants/*": [
+        "./src/constants/*"
+      ],
+      "@/contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
+      "@/services/*": [
+        "./src/services/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ]
     }
   },
   "include": [
@@ -20,5 +53,6 @@
     "src/**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

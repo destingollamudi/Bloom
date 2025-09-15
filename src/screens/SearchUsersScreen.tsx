@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Platform } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -51,7 +52,10 @@ export default function SearchUsersScreen() {
 
   return (
     <ScrollView 
-      style={[styles.container, { paddingTop: insets.top }]} 
+      style={[styles.container, { 
+        paddingTop: insets.top,
+        paddingBottom: Platform.OS === 'ios' ? insets.bottom + 80 : 80
+      }]} 
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>

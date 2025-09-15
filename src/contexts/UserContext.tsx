@@ -13,8 +13,6 @@ import {
 import { STORAGE_KEYS } from '../constants';
 import { getTodayDate, getGreeting } from '../utils';
 
-const getTodayDate = () => new Date().toISOString().split('T')[0];
-
 export const [UserProvider, useUser] = createContextHook(() => {
   const [dailyEntries, setDailyEntries] = useState<DailyEntry[]>([]);
   const [userStats, setUserStats] = useState<UserStats>({ blooms: 12, weeds: 8 });

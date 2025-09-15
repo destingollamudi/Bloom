@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  Platform,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Card } from "../components";
 import { Colors } from "../constants";
 import { Scissors } from "lucide-react-native";
@@ -16,6 +18,7 @@ import { useUser } from "../contexts";
 type Severity = 'Low' | 'Medium' | 'High';
 
 export default function PruningScreen() {
+  const insets = useSafeAreaInsets();
   const { pruningPosts, addPruningPost } = useUser();
   const [habitName, setHabitName] = useState<string>('');
   const [whyItMatters, setWhyItMatters] = useState<string>('');
@@ -70,7 +73,13 @@ export default function PruningScreen() {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView 
+      style={[styles.container, { 
+        paddingTop: insets.top,
+        paddingBottom: Platform.OS === 'ios' ? insets.bottom + 80 : 80
+      }]} 
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Prune What Holds You Back ✂️</Text>
         <Text style={styles.headerSubtitle}>

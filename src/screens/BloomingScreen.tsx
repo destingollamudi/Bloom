@@ -144,7 +144,10 @@ export default function BloomingScreen() {
 
   return (
     <ScrollView 
-      style={[styles.container, { paddingTop: insets.top }]} 
+      style={[styles.container, { 
+        paddingTop: insets.top,
+        paddingBottom: Platform.OS === 'ios' ? insets.bottom + 80 : 80
+      }]} 
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
@@ -267,7 +270,7 @@ export default function BloomingScreen() {
               activeOpacity={0.7}
             >
               <Text style={styles.reactionEmoji}>🌱</Text>
-              <Text style={styles.reactionCount}>{post.reactions.growth.length}</Text>
+              <Text style={styles.reactionCount}>{post.reactions.growth}</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -276,7 +279,7 @@ export default function BloomingScreen() {
               activeOpacity={0.7}
             >
               <Text style={styles.reactionEmoji}>👏</Text>
-              <Text style={styles.reactionCount}>{post.reactions.applause.length}</Text>
+              <Text style={styles.reactionCount}>{post.reactions.applause}</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -285,7 +288,7 @@ export default function BloomingScreen() {
               activeOpacity={0.7}
             >
               <Text style={styles.reactionEmoji}>💜</Text>
-              <Text style={styles.reactionCount}>{post.reactions.love.length}</Text>
+              <Text style={styles.reactionCount}>{post.reactions.love}</Text>
             </TouchableOpacity>
           </View>
         </Card>
