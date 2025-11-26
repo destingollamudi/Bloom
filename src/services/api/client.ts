@@ -78,6 +78,31 @@ class ApiClient {
       throw new ApiError('NETWORK_ERROR', 'Network request failed', 0);
     }
   }
+
+  async get<T>(endpoint: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
+    const queryString = params
+      ? '?' + new URLSearchParams(params).toString()
+      : '';
+    return this.request<T>(endpoint + queryString, { method: 'GET' });
+  }
+
+  async post<T>(endpoint: string, body?: any): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'POST',
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  }
+
+  async put<T>(endpoint: string, body?: any): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'PUT',
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  }
+
+  async delete<T>(endpoint: string): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, { method: 'DELETE' });
+  }
 }
 
 export class ApiError extends Error {
