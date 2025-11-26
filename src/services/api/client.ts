@@ -25,3 +25,16 @@ export interface PaginatedResponse<T> {
     nextCursor?: string;
   };
 }
+
+export class ApiError extends Error {
+  constructor(
+    public code: string,
+    message: string,
+    public status: number,
+    public details?: any
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
