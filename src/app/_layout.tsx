@@ -4,14 +4,17 @@ import React from "react";
 import { Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Colors } from "../constants";
 import { UserProvider } from "../contexts";
+import { queryClient } from "../services/queryClient";
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
   
   return (
-    <UserProvider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
       <StatusBar style="dark" backgroundColor="transparent" translucent />
       <Tabs
         screenOptions={{
@@ -117,6 +120,7 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-    </UserProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
