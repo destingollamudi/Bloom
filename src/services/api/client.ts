@@ -103,6 +103,29 @@ class ApiClient {
   async delete<T>(endpoint: string): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, { method: 'DELETE' });
   }
+
+  async getPaginated<T>(
+    endpoint: string,
+    params?: Record<string, any>
+  ): Promise<PaginatedResponse<T>> {
+    const response = await this.get<PaginatedResponse<T>>(endpoint, params);
+    
+    if ('pagination' in response) {
+      return response as PaginatedResponse<T>;
+    }
+    
+    return {
+      success: response.success,
+      data: Array.isArray(response.data) ? response.data : [],
+      pagination: {
+        page: params?.page || 1,
+        limit: params?.limit || 20,
+        total: Array.isArray(response.data) ? response.data.length : 0,
+        totalPages: 1,
+        hasMore: false,
+      },
+    };
+  }
 }
 
 export class ApiError extends Error {
