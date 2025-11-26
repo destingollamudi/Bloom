@@ -19,7 +19,7 @@ export const STORAGE_KEYS = {
 
 // API endpoints (for future use)
 export const API_ENDPOINTS = {
-  BASE_URL: 'https://api.bloom.com',
+  BASE_URL: process.env.EXPO_PUBLIC_API_URL || 'https://api.bloom.com/v1',
   AUTH: '/auth',
   USERS: '/users',
   POSTS: '/posts',
