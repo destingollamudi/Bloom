@@ -153,11 +153,16 @@ export interface ApiResponse<T> {
 }
 
 export interface PaginatedResponse<T> {
+  success: boolean;
   data: T[];
-  page: number;
-  limit: number;
-  total: number;
-  hasMore: boolean;
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasMore: boolean;
+    nextCursor?: string;
+  };
 }
 
 // Navigation types
